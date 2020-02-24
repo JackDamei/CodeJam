@@ -1,0 +1,46 @@
+Case #1: AB + AB
+Case #2: A + CC + AB + AB
+Case #3: C + A + CB
+Case #4: B + C + AB + AB
+Case #5: B + CC + AB + AB + AB
+Case #6: C + AB + AB
+Case #7: A + CC + AB + AB + AB
+Case #8: C + AB + AB + AB
+Case #9: AB
+Case #10: A + CB + CB + CB + CB
+Case #11: BB + AC + AC + AC
+Case #12: B + AC + AC + AC + AC
+Case #13: C + B + AC + AC + AC
+Case #14: C + A + CB + CB + CB
+Case #15: AB + AB + AB
+Case #16: B + C + AB + AB + AB
+Case #17: B + AC + AC
+Case #18: B + A + CB + CB
+Case #19: CC + AB + AB + AB
+Case #20: C + A + CB + CB
+Case #21: A + B + AC + AC + AC
+Case #22: C + AB + AB + AB + AB
+Case #23: C + AB
+Case #24: A + C + AB + AB + AB
+Case #25: A + CB + CB
+Case #26: AB + AB + AB + AB
+Case #27: C + AA + CB + CB
+Case #28: B + AA + CB + CB + CB
+Case #29: A + BB + AC + AC + AC
+Case #30: A + C + AB
+Case #31: B + AC + AC + AC
+Case #32: C + B + AC + AC
+Case #33: C + C + AA + CB + CB
+Case #34: B + A + CB + CB + CB
+Case #35: AA + CB + CB + CB
+Case #36: A + CB + CB + CB
+Case #37: CC + AB + AB
+Case #38: A + C + AB + AB
+Case #39: B + CC + AB + AB
+Case #40: A + B + AC + AC
+Case #41: B + B + CC + AB + AB
+Case #42: A + A + CC + AB + AB
+Case #43: CC + C + AB + AB + AB
+Case #44: B + C + AB
+Case #45: C + BB + AC + AC + AC
+Case #46: C + AA + CB + CB + CB

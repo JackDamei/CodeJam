@@ -61,6 +61,7 @@ public class MainB {
 		
 		class Activity {
 			int S;
+			@SuppressWarnings("unused")
 			int E;
 			char c;
 			public Activity (int S, int E, char c) {

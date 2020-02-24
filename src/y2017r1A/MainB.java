@@ -60,6 +60,7 @@ public class MainB {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	static String solve (int N, int P, int[] R, int[][] Q) {
 		String res = "";
 		int[][] min = new int[N][P];

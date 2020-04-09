@@ -2,7 +2,6 @@ package y2020.qualif;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainB {
@@ -13,35 +12,23 @@ public class MainB {
 		int T = in.nextInt();
 
 		for (int t=0; t<T; t++) {
-			int N = in.nextInt();
-			int [][] M = new int[N][N];
-			for (int i=0; i<N; i++)
-				for (int j=0; j<N; j++)
-					M[i][j] = in.nextInt();
-			int k = 0;
-			int r = 0;
-			int c = 0;
-			boolean [] check = new boolean[N];
-			for (int i=0; i<N; i++) {
-				k += M[i][i];
-				Arrays.fill(check, false);
-				for (int j=0; j<N; j++) {
-					if (check[M[i][j]-1]) {
-						r++;
-						break;
-					}
-					check[M[i][j]-1] = true;
-				}
-				Arrays.fill(check, false);
-				for (int j=0; j<N; j++) {
-					if (check[M[j][i]-1]) {
-						c++;
-						break;
-					}
-					check[M[j][i]-1] = true;
-				}
+			String S = in.next();
+			String res = "";
+			int cur = 0;
+			for (int i=0; i<S.length(); i++) {
+				int next = Integer.parseInt(S.substring(i,i+1));
+				if (cur < next)
+					for (int j=0; j<next-cur; j++)
+						res += "(";
+				if (cur > next)
+					for (int j=0; j<cur-next; j++)
+						res += ")";
+				res += next;
+				cur = next;
 			}
-			System.out.println("Case #"+(t+1)+": "+k+" "+r+" "+c);
+			for (int j=0; j<cur; j++)
+				res += ")";			
+			System.out.println("Case #"+(t+1)+": "+res);
 		}
 		in.close();
 	}

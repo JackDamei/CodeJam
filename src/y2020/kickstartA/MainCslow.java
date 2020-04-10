@@ -2,10 +2,11 @@ package y2020.kickstartA;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Scanner;
 
-public class MainC {
+public class MainCslow {
 
 	public static void main(String[] args) {
 
@@ -20,9 +21,37 @@ public class MainC {
 			for (int i=0; i<N; i++)
 				M[i] = in.nextInt();
 
+			LinkedList<Integer> Kmost = new LinkedList<Integer>();
 
+			int target = 0;
+			for (int i=1; i<N; i++) {
+				int diff = M[i]-M[i-1];
+				if (diff > target) {
+					Kmost.add(diff);
+					Collections.sort(Kmost);
+					if (Kmost.size() > K+1) {
+						Kmost.removeFirst();
+						target = Kmost.getFirst();
+					}
+				}
+			}
+			for (int i=0; i<K; i++) {
+				int tmp = Kmost.removeLast();
+				int split = tmp/2;
+				if (split > target) {
+					Kmost.add(split);
+					Collections.sort(Kmost);
+					target = Kmost.getFirst();
+				}
+				split = (tmp+1)/2;
+				if (split > target) {
+					Kmost.add(split);
+					Collections.sort(Kmost);
+					target = Kmost.getFirst();
+				}
+			}
 
-			//System.out.println("Case #"+(t+1)+": "+res);
+			System.out.println("Case #"+(t+1)+": "+Kmost.getLast());
 		}
 		in.close();
 	}

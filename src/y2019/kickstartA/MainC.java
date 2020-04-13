@@ -2,6 +2,7 @@ package y2019.kickstartA;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainC {
@@ -22,10 +23,28 @@ public class MainC {
 				R[i] = in.nextInt();
 			}
 			
+			IntervalTree tree = new IntervalTree(1,N,0);
 			
-			System.out.println("Case #"+(t+1)+": "+N);
+
+			
+			System.out.println("Case #"+(t+1)+": "+tree);
 		}
 		in.close();
 	}
+	
+	public static class IntervalTree {
+		int L;
+		int R;
+		int orders;
+		ArrayList<IntervalTree> C;
+		
+		public IntervalTree (int L, int R, int orders) {
+			this.L = L;
+			this.R = R;
+			this.orders = orders;
+			this.C = new ArrayList<IntervalTree>();
+		}
+	}
+	
 }
 

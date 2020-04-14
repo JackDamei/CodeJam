@@ -18,6 +18,8 @@ public class MainA {
 			if (R*C < 10)
 				System.out.println("Case #"+(t+1)+": IMPOSSIBLE");
 			else {
+				// TODO do rows of 2 (eventually 3)
+				// urgh... does not work for 4x4
 				System.out.println("Case #"+(t+1)+": POSSIBLE");
 				int a = Math.max(R, C);
 				int b = Math.min(R, C);

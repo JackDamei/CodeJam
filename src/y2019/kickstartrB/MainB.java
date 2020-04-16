@@ -1,4 +1,4 @@
-package y2019.kickstartB;
+package y2019.kickstartrB;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

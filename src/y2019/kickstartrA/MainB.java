@@ -1,11 +1,10 @@
-package y2020.kickstartA;
+package y2019.kickstartrA;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class MainA {
+public class MainB {
 
 	public static void main(String[] args) {
 
@@ -14,22 +13,20 @@ public class MainA {
 
 		for (int t=0; t<T; t++) {
 
-			int N = in.nextInt();
-			int B = in.nextInt();
-			
-			int[] A = new int[N];
-			for (int i=0; i<N; i++)
-				A[i] = in.nextInt();
-			Arrays.sort(A);
-
-			int res = 0;
-			int price = 0;			
-			while (res < N && (price += A[res]) <= B) {
-				res++;
+			int R = in.nextInt();
+			int C = in.nextInt();
+			boolean[][] isOffice = new boolean[R][C];
+			for (int i=0; i<R; i++) {
+				String s = in.next();
+				for (int j=0; j<C; j++)
+					isOffice[i][j] = s.charAt(j)=='1';
 			}
 			
+			
+			int res = 0;
 			System.out.println("Case #"+(t+1)+": "+res);
 		}
 		in.close();
 	}
 }
+

@@ -13,10 +13,18 @@ public class MainB {
 
 		for (int t=0; t<T; t++) {
 		
+			int N = in.nextInt();
+			long D = in.nextLong();
 			
+			long[] X = new long[N]; 
+			for (int i=0; i<N; i++)
+				X[i] = in.nextLong();
 			
+			long res = D;
+			for (int i=N-1; i>=0; i--)
+				res -= res%X[i];
 			
-			System.out.println(String.format("Case #%d:",t+1));
+			System.out.println(String.format("Case #%d: %d",t+1, res));
 		}
 		
 		in.close();

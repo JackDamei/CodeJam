@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class MainC {
+public class MainCfail {
 	
 	static long MAX = 1000000000;
 
@@ -19,28 +19,28 @@ public class MainC {
 			String s = in.next();
 			
 			long cptH=0, cptV=0;
-			LinkedList<Long> list = new LinkedList<Long>();
-			long coef = 1;
+			LinkedList<Integer> list = new LinkedList<Integer>();
+			long mult = 1;
 			for (int i=0; i<s.length();i++) {
 				char c = s.charAt(i);
 				if (c == '(') continue;
-				if (c == 'N') cptV -= coef;
-				if (c == 'S') cptV += coef;
-				if (c == 'W') cptH -= coef;
-				if (c == 'E') cptH += coef;
+				if (c == 'N') cptV -= mult;
+				if (c == 'S') cptV += mult;
+				if (c == 'W') cptH -= mult;
+				if (c == 'E') cptH += mult;
 				if (c>'1'&&c<='9') {
-					list.addFirst(coef);
 					int n = Integer.parseInt(s.substring(i,i+1));
-					coef = (n*coef)%MAX;
+					mult *= n;
+					list.addFirst(n);
 				}
-				cptV %= MAX;
-				cptH %= MAX;
-				if (c == ')') coef = list.removeFirst();
+				if (c == ')') mult /= list.removeFirst();
 			}
-			cptH += cptH < 0 ? MAX+1 : 1;
-			cptV += cptV < 0 ? MAX+1 : 1;
+			cptH = cptH%MAX;
+			cptH += cptH < 0 ? MAX : 0;
+			cptV = cptV%MAX;
+			cptV += cptV < 0 ? MAX : 0;
 			
-			System.out.println(String.format("Case #%d: %d %d",t+1,cptH,cptV));
+			System.out.println(String.format("Case #%d: %d %d",t+1,cptH+1,cptV+1));
 		}
 		
 		in.close();

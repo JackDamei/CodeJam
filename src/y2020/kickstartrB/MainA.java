@@ -13,10 +13,17 @@ public class MainA {
 
 		for (int t=0; t<T; t++) {
 		
+			int N = in.nextInt();
+			int[] H = new int[N];
+			for (int i=0; i<N; i++) {
+				H[i] = in.nextInt();
+			}
 			
+			int res = 0;
+			for (int i=1; i<N-1; i++)
+				res += H[i]>H[i-1]&&H[i]>H[i+1] ? 1 : 0;
 			
-			
-			System.out.println(String.format("Case #%d:",t+1));
+			System.out.println(String.format("Case #%d: %d",t+1, res));
 		}
 		
 		in.close();

@@ -5,17 +5,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainA {
+public class MainAslow {
 
-	public static class Interval {
-		long left;
-		long right;
-		public Interval (long l, long r) {
-			left = l;
-			right = r;
-		}
-	}
-	
 	public static void main (String[] args) {
 
 		Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in))); 
@@ -31,8 +22,8 @@ public class MainA {
 
 			String instructions = in.next();
 			
-			ArrayList<Interval> vertical = new ArrayList<Interval>();
-			ArrayList<Interval> horizontal = new ArrayList<Interval>();
+			ArrayList<Long> vertical = new ArrayList<Long>();
+			ArrayList<Long> horizontal = new ArrayList<Long>();
 			
 			int ri = Sr-1;
 			int ci = Sc-1;
@@ -42,37 +33,32 @@ public class MainA {
 			
 			for (int i=0; i<N; i++) {
 				char dir = instructions.charAt(i);
-				ArrayList<Interval> l = null;
+				ArrayList<Long> l = null;
 				boolean se = false;
 				int start = 0;
-				long val = 0;
 				switch (dir) {
 				case 'N':
 					l = vertical;
 					start = indV;
-					val = ci*R+ri;
 					se = false;
 					break;
 				case 'S':
 					l = vertical;
 					start = indV;
-					val = ci*R+ri;
 					se = true;
 					break;
 				case 'W':
 					l = horizontal;
 					start = indH;
-					val = ri*C+ci;
 					se = false;
 					break;
 				case 'E':
 					l = horizontal;
 					start = indH;
-					val = ri*C+ci;
 					se = true;
 					break;
 				}
-				int offset = getOffset(l, se, start, val);
+				int offset = getOffset(l, se, start);
 				if (l==vertical)
 					ri += offset;
 				else
@@ -87,18 +73,18 @@ public class MainA {
 		in.close();
 	}
 
-	private static int add(int R, int C, ArrayList<Interval> list, boolean isV, int ri, int ci) {
+	private static int add(int R, int C, ArrayList<Long> list, boolean isV, int ri, int ci) {
 		long val = isV ? (long)ci*R+ri : (long)ri*C+ci;
 		int ind, size=list.size();
-		if (list.size() == 0 || val<list.get(0).left)
+		if (list.size() == 0 || val<list.get(0))
 			ind = 0;
-		else if (val>list.get(size-1).right)
+		else if (val>list.get(size-1))
 			ind = size;
 		else {
 			int left=0, right=size-1;
 			while (left<right) {
 				int mid = (left+right)/2;
-				long tmp = list.get(mid).left;
+				long tmp = list.get(mid);
 				if (val<tmp)
 					right = mid;
 				else
@@ -106,27 +92,25 @@ public class MainA {
 			}
 			ind = left;
 		}
-		list.add(ind,new Interval(val,val));
-		return checkNb(list,ind);
+		list.add(ind,val);
+		return ind;
 	}
 	
-	private static int checkNb (ArrayList<Interval> list, int ind) {
-		int tmp = ind;
-		if (ind > 0 && list.get(tmp-1).right == list.get(tmp).left-1) {
-			list.get(tmp-1).right = list.get(tmp).right;
-			list.remove(tmp);
-			tmp--;
+	private static int getOffset (ArrayList<Long> list, boolean se, int start) {
+		long tmp = list.get(start);
+		int res;
+		if (se) {
+			res = 1;
+			while (start+res < list.size() &&
+					list.get(start+res) == tmp+res)
+				res++;
+		} else {
+			res = -1;
+			while (start+res >= 0 &&
+					list.get(start+res) == tmp+res)
+				res--;
 		}
-		if (ind < list.size()-1 && list.get(tmp+1).left == list.get(tmp).right+1) {
-			list.get(tmp).right = list.get(tmp+1).right;
-			list.remove(tmp+1);
-		}
-		return tmp;
-	}
-	
-	private static int getOffset (ArrayList<Interval> list, boolean se, int start, long val) {
-		Interval tmp = list.get(start);
-		return (int) (se ? tmp.right-val+1 : tmp.left-val-1);
+		return res;
 	}
 	
 }
